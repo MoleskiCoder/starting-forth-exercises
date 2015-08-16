@@ -1,38 +1,39 @@
-: c5p1 ( a b c -- )
-   */ negate ;
+: C5P1 ( a b c -- )
+   */ NEGATE ;
 
-cr
-cr ." (should be -4) " 5 6 7 c5p1 .
+CR
+CR ." (should be -4) " 5 6 7 C5P1 .
 
-: largest
-   max max max ;
+: LARGEST
+   MAX MAX MAX ;
 
-cr
-cr ." (should be 123) " 6 70 123 45 largest .
+CR
+CR ." (should be 123) " 6 70 123 45 LARGEST .
 
-: f>c ( f -- c )
+: F>C ( F -- C )
    32 - 5 9 */ ;
 
-: c>f ( c -- f )
+: C>F ( C -- F )
    9 5 */ 32 + ;
 
-: c>k ( c -- k )
+: C>K ( C -- K )
    273 + ;
 
-: k>c ( k -- c )
+: K>C ( K -- C )
    273 - ;
 
-: f>k ( f -- k )
-   f>c c>k ;
+: F>K ( F -- K )
+   F>C C>K ;
 
-: k>f ( k -- f )
-   k>c c>f ;
+: K>F ( K -- F )
+   K>C C>F ;
 
-cr
-cr ." (should be -17.7) " 0 f>c .
-cr ." (should be 100) " 212 f>c .
-cr ." (should be -35.5) " -32 f>c .
-cr ." (should be 60.8) " 16 c>f .
-cr ." (should be -40) " 233 k>c .
+CR
+CR ." (should be -17.7) " 0 F>C .
+CR ." (should be 100) " 212 F>C .
+CR ." (should be -35.5) " -32 F>C .
+CR ." (should be 60.8) " 16 C>F .
+CR ." (should be -40) " 233 K>C .
 
-cr .s
+CR .S
+

@@ -1,51 +1,53 @@
-: 4reverse
-   swap 2swap swap ;
+: 4REVERSE
+   SWAP 2SWAP SWAP ;
 
-cr 1 2 3 4 4reverse .s 2drop 2drop
+CR 1 2 3 4 4REVERSE .S 2DROP 2DROP
 
-: 3dup
-   dup 2over rot ;
+: 3DUP
+   DUP 2OVER ROT ;
 
-cr 1 2 3 3dup .s 2drop 2drop 2drop
+CR 1 2 3 3DUP .S 2DROP 2DROP 2DROP
 
-: four ( c a b -- result )
-   swap ( c b a )
-   dup dup ( c b a a a )
-   * ( c b a a^2 )
-   swap ( c b a^2 a )
-   rot ( c a^2 a b )
-   * ( c a^2 a*b )
+: FOUR ( C A B -- RESULT )
+   SWAP ( C B A )
+   DUP DUP ( C B A A A )
+   * ( C B A A^2 )
+   SWAP ( C B A^2 A )
+   ROT ( C A^2 A B )
+   * ( C A^2 A*B )
    + + ;
 
-cr 4 2 3 four .
+CR 4 2 3 FOUR .
 
-: five ( a b -- result )
-   2dup ( a b a b )
-   - ( a b a-b )
-   rot ( b a-b a )
-   rot ( a-b a b )
-   + ( a-b a+b )
+: FIVE ( A B -- RESULT )
+   2DUP ( A B A B )
+   - ( A B A-B )
+   ROT ( B A-B A )
+   ROT ( A-B A B )
+   + ( A-B A+B )
    / ;
 
-cr 2 1 five .
-cr 3 2 five .
+CR 2 1 FIVE .
+CR 3 2 FIVE .
 
-: convicted-of 0 ;
-: homicide 20 + ;
-: arson 10 + ;
-: bookmaking 2 + ;
-: tax-evasion 5 + ;
+: CONVICTED-OF 0 ;
+: HOMICIDE 20 + ;
+: ARSON 10 + ;
+: BOOKMAKING 2 + ;
+: TAX-EVASION 5 + ;
 
-: will-serve . ."  years" ;
+: WILL-SERVE
+   . ." YEARS" ;
 
-convicted-of arson homicide tax-evasion
-will-serve
+CONVICTED-OF ARSON HOMICIDE TAX-EVASION
+WILL-SERVE
+CR
 
-: egg-cartons
-   12 /mod cr . ." cartons and " . ." left over." ;
+: EGG-CARTONS
+   12 /MOD CR . ." CARTONS AND " . ." LEFT OVER." ;
 
-12 egg-cartons
-24 egg-cartons
-5 egg-cartons
-25 egg-cartons
+12 EGG-CARTONS
+24 EGG-CARTONS
+5 EGG-CARTONS
+25 EGG-CARTONS
 

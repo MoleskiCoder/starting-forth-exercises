@@ -1,8 +1,8 @@
-: ten.less
+: TEN.LESS
    10 - ;
 
-10 ten.less .
+10 TEN.LESS .
 
-20 ten.less .
+20 TEN.LESS .
 
-25 ten.less .
+25 TEN.LESS .

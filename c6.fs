@@ -1,103 +1,107 @@
-: star
+: NOT
+ 0= ;
+
+: STAR
    ." *" ;
 
-: stars ( n -- )
-   0 do star loop ;
+: STARS ( n -- )
+   0 DO STAR LOOP ;
 
-cr
-10 stars
+CR
+10 STARS
 
-: box ( width height -- )
-   0 do dup stars cr loop drop ;
+: BOX ( width height -- )
+   0 DO DUP STARS CR LOOP DROP ;
 
-cr
-cr 10 3 box
+CR
+CR 10 3 BOX
 
-: space
+: SPACE
    ."  " ;
 
-: spaces ( n -- )
-   0 do space loop ;
+: SPACES ( n -- )
+   0 DO SPACE LOOP ;
 
-: \stars ( height -- )
-   0 do
-     i 1+ spaces
-     10 stars cr
-   loop ;
+: \STARS ( height -- )
+   0 DO
+     I 1+ SPACES
+     10 STARS CR
+   LOOP ;
 
-cr
-3 \stars
+CR
+3 \STARS
 
-: /stars ( height -- )
-   dup
-   0 do
-     dup i - spaces
-     10 stars cr
-   loop
-   drop ;
+: /STARS ( height -- )
+   DUP
+   0 DO
+     DUP I - SPACES
+     10 STARS CR
+   LOOP
+   DROP ;
 
-cr
-3 /stars
+CR
+3 /STARS
 
-: /stars2 ( height -- )
-   begin
-     dup spaces
-     10 stars cr
-   1- dup 0= until
-   drop ;
+: /STARS2 ( height -- )
+   BEGIN
+     DUP SPACES
+     10 STARS CR
+   1- DUP 0= UNTIL
+   DROP ;
 
-cr
-3 /stars2
+CR
+3 /STARS2
 
-: diamond ( width -- )
-   2 + dup
-   1 do
-     dup i - 2 / spaces
-     i stars cr
-   2 +loop
-   2 - dup
-   1 swap do
-     dup i - 2 + 2 / spaces 
-     i stars cr
-   -2 +loop
-   drop ;
+: DIAMOND ( width -- )
+   2 + DUP
+   1 DO
+     DUP I - 2 / SPACES
+     I STARS CR
+   2 +LOOP
+   2 - DUP
+   1 SWAP DO
+     DUP I - 2 + 2 / SPACES 
+     I STARS CR
+   -2 +LOOP
+   DROP ;
 
-: diamonds ( count -- )
-   0 do
-     19 diamond
-   loop ;
+: DIAMONDS ( count -- )
+   0 DO
+     19 DIAMOND
+   LOOP ;
 
-cr
-2 diamonds
+CR
+2 DIAMONDS
 
-: r% 10 */ 5 + 10 / ;
+: R% 10 */ 5 + 10 / ;
 
-: doubled
-   21 1 do cr
-     ." year " i 2 u.r
-     2dup r% + dup ."    balance " .
-     dup 2000 > if cr cr ." more than doubled in "
-                    i . ." years "  leave  then
-                                 loop 2drop ;
+: DOUBLED
+   21 1 DO CR
+     ." year " I 2 U.R
+     2DUP R% + DUP ."    balance " .
+     DUP 2000 > IF CR CR ." more than doubled in "
+                    I . ." years "  LEAVE  THEN
+                                 LOOP 2DROP ;
 
-cr
-6 1000 doubled
+CR
+6 1000 DOUBLED
 
 : ** ( n power -- )
-    dup 1 <> if
-      over rot rot 1 do
-        over *
-      loop
-      swap
-    then
-    drop ;
+    DUP 1 = NOT IF
+      OVER ROT ROT 1 DO
+        OVER *
+      LOOP
+      SWAP
+    THEN
+    DROP ;
 
-cr cr
-2 1 ** ." result is:" .  cr
-2 2 ** ." result is:" .  cr
-2 3 ** ." result is:" .  cr
-2 4 ** ." result is:" .  cr
-2 5 ** ." result is:" .  cr
-2 6 ** ." result is:" .  cr
+CR CR
+2 1 ** ." result is:" .  CR
+2 2 ** ." result is:" .  CR
+2 3 ** ." result is:" .  CR
+2 4 ** ." result is:" .  CR
+2 5 ** ." result is:" .  CR
+2 6 ** ." result is:" .  CR
 
-cr .s
+CR .S
+

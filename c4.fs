@@ -1,98 +1,99 @@
-: not 0= ;
+: NOT
+   0= ;
 
-cr
-cr 1 0= not . ." should be true"
-cr 0 0= not . ." should be false"
-cr 200 0= not . ." should be true"
+CR
+CR 1 0= NOT . ." SHOULD BE TRUE"
+CR 0 0= NOT . ." SHOULD BE FALSE"
+CR 200 0= NOT . ." SHOULD BE TRUE"
 
-: card ( n -- )
-   18 >= if
-     ." alcoholic beverages permitted"
-   else
-     ." under age"
-   then ;
+: CARD ( N -- )
+   18 >= IF
+     ." ALCOHOLIC BEVERAGES PERMITTED"
+   ELSE
+     ." UNDER AGE"
+   THEN ;
 
-cr
-cr 10 dup . card
-cr 17 dup . card
-cr 18 dup . card
-cr 19 dup . card
+CR
+CR 10 DUP . CARD
+CR 17 DUP . CARD
+CR 18 DUP . CARD
+CR 19 DUP . CARD
 
-: sign.test ( n -- )
-   dup 0> if ." positive" then
-   dup 0= if ." zero" then
-       0< if ." negative" then ;
+: SIGN.TEST ( N -- )
+   DUP 0> IF ." POSITIVE" THEN
+   DUP 0= IF ." ZERO" THEN
+       0< IF ." NEGATIVE" THEN ;
 
-cr
-cr ." (should be negative) " -1 sign.test
-cr ." (should be zero) " 0 sign.test
-cr ." (should be positive) " 1 sign.test
+CR
+CR ." (SHOULD BE NEGATIVE) " -1 SIGN.TEST
+CR ." (SHOULD BE ZERO) " 0 SIGN.TEST
+CR ." (SHOULD BE POSITIVE) " 1 SIGN.TEST
 
-: star ( -- )
-   42 emit ;
+: STAR ( -- )
+   42 EMIT ;
 
-: stars ( n -- )
-   dup 0= if drop else 0 do star loop then ;
+: STARS ( N -- )
+   DUP 0= IF DROP ELSE 0 DO STAR LOOP THEN ;
 
-cr
-cr 0 stars
-cr 1 stars
-cr 5 stars
+CR
+CR 0 STARS
+CR 1 STARS
+CR 5 STARS
 
-: within ( n low-limit high-limit -- within )
-   rot dup rot < ( ll n lt )
-   rot rot < ( lt ht )
-   and ;
+: WITHIN ( N LOW-LIMIT HIGH-LIMIT -- WITHIN )
+   ROT DUP ROT < ( LL N LT )
+   ROT ROT < ( LT HT )
+   AND ;
 
-cr
-cr ." (should be true) " 5 4 6 within .
-cr ." (should be false) " 4 5 8 within .
+CR
+CR ." (SHOULD BE TRUE) " 5 4 6 WITHIN .
+CR ." (SHOULD BE FALSE) " 4 5 8 WITHIN .
 
-: guess ( secret guess -- secret / secret guess -- )
-   2dup < if ." too high" then
-   2dup > if ." too low" then
-   over = if drop ." success!" then
-   cr ;
+: GUESS ( SECRET GUESS -- SECRET / SECRET GUESS -- )
+   2DUP < IF ." TOO HIGH" THEN
+   2DUP > IF ." TOO LOW" THEN
+   OVER = IF DROP ." SUCCESS!" THEN
+   CR ;
 
-: speller ( n -- )
-   dup abs
-   dup rot
-       = not if ." negative " then
-   dup 4 = if ." four" drop else
-   dup 3 = if ." three" drop else
-   dup 2 = if ." two" drop else
-   dup 1 = if ." one" drop else
-       0= if ." zero" drop else
-         ." out of range"
-   then then then then then ;
+: SPELLER ( N -- )
+   DUP ABS
+   DUP ROT
+       = NOT IF ." NEGATIVE " THEN
+   DUP 4 = IF ." FOUR" DROP ELSE
+   DUP 3 = IF ." THREE" DROP ELSE
+   DUP 2 = IF ." TWO" DROP ELSE
+   DUP 1 = IF ." ONE" DROP ELSE
+       0= IF ." ZERO" DROP ELSE
+         ." OUT OF RANGE"
+   THEN THEN THEN THEN THEN ;
 
-cr
-cr ." (should be two) " 2 speller
-cr ." (should be negative four) " -4 speller
-cr ." (should be out of range) " 7 speller
+CR
+CR ." (SHOULD BE TWO) " 2 SPELLER
+CR ." (SHOULD BE NEGATIVE FOUR) " -4 SPELLER
+CR ." (SHOULD BE OUT OF RANGE) " 7 SPELLER
 
-: trap ( secret low high -- secret )
-   2dup ( secret low high low high )
-   = if
-     ." you got it!"
-     2drop drop ( -- )
-   else
-     rot dup >r
-     rot rot
-     within if
-       ." between "
-     else
-       ." not between"
-     then
-     r>
-   then ;
+: TRAP ( SECRET LOW HIGH -- SECRET )
+   2DUP ( SECRET LOW HIGH LOW HIGH )
+   = IF
+     ." YOU GOT IT!"
+     2DROP DROP ( -- )
+   ELSE
+     ROT DUP >R
+     ROT ROT
+     WITHIN IF
+       ." BETWEEN "
+     ELSE
+       ." NOT BETWEEN"
+     THEN
+     R>
+   THEN ;
 
-cr
+CR
 391
-cr ." (should be between) " 0 1000 trap
-cr ." (should be between) " 330 660 trap
-cr ." (should be not between) " 440 550 trap
-cr ." (should be between) " 330 440 trap
-cr ." (should be you got it!) " 391 391 trap
+CR ." (SHOULD BE BETWEEN) " 0 1000 TRAP
+CR ." (SHOULD BE BETWEEN) " 330 660 TRAP
+CR ." (SHOULD BE NOT BETWEEN) " 440 550 TRAP
+CR ." (SHOULD BE BETWEEN) " 330 440 TRAP
+CR ." (SHOULD BE YOU GOT IT!) " 391 391 TRAP
 
-cr .s
+CR .S
