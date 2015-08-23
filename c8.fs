@@ -120,9 +120,6 @@ variable oxo-data 8 allot
 : oxo-element ( index -- address )
    oxo-data + ;
 
-: space ( -- )
-   ."  " ;
-
 : x-piece ( -- )
    [char] x emit ;
 
