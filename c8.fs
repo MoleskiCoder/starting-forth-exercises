@@ -132,6 +132,9 @@ variable oxo-data 8 allot
 : hyphen ( -- )
    [char] - emit ;
 
+: hyphens ( n -- )
+   0 do hyphen loop ;
+
 : oxo-element? ( n -- )
    ( cannot test against -1 because we store as a byte 255 )
    oxo-element c@ dup
@@ -141,7 +144,7 @@ variable oxo-data 8 allot
    then then ;
 
 : hyphen-row ( -- )
-   11 0 do hyphen loop ;
+   11 hyphens ;
 
 : oxo? ( -- )
    9 0 do
