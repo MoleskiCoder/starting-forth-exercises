@@ -1,177 +1,177 @@
-\ pies
+\ PIEs
 
-variable pies
+VARIABLE PIES
 
 : RESET-PIES
-   0 pies !  ;
+   0 PIES !  ;
 
 : BAKE-PIE
-   1 pies +! ;
+   1 PIES +! ;
 
 : EAT-PIE
-   pies @ 0= if
+   PIES @ 0= IF
      ." what pie?"
    else
-     -1 pies +!
+     -1 PIES +!
      ." thank you!"
-   then ;
+   THEN ;
 
-cr
-reset-pies
-eat-pie
-bake-pie
-eat-pie
+CR
+RESET-PIES
+eat-PIE
+BAKE-PIE
+eat-PIE
 
-variable frozen-pies
+VARIABLE FROZEN-PIES
 
-: reset-frozen-pies
-   0 frozen-pies ! ;
+: RESET-FROZEN-PIES
+   0 FROZEN-PIES ! ;
 
-: freeze-pies
-   pies @ reset-pies frozen-pies ! ;
+: FREEZE-PIES
+   PIES @ RESET-PIES FROZEN-PIES ! ;
    
-cr
-reset-frozen-pies
-bake-pie cr
-bake-pie cr
-freeze-pies cr
-pies ?
-frozen-pies ? cr
+CR
+RESET-FROZEN-PIES
+BAKE-PIE CR
+BAKE-PIE CR
+FREEZE-PIES CR
+PIES ?
+FROZEN-PIES ? CR
 
-\ current forth number base
+\ current forth number BASE
 
-: .base
-   base @ dup
-   decimal .
-   base ! ;
+: .BASE
+   BASE @ DUP
+   DECIMAL .
+   BASE ! ;
 
-cr
-decimal .base cr
-hex .base cr
+CR
+DECIMAL .BASE CR
+HEX .BASE CR
 
-decimal
+DECIMAL
 
-\ pencils
+\ PENCILS
 
-0 constant red
-1 constant blue
-2 constant green
-3 constant orange
+0 CONSTANT RED
+1 CONSTANT BLUE
+2 CONSTANT GREEN
+3 CONSTANT ORANGE
 
-variable pencil-store 3 cells allot
+VARIABLE PENCIL-STORE 3 CELLS ALLOT
 
-: pencils
-   cells pencil-store + ;
+: PENCILS
+   CELLS PENCIL-STORE + ;
 
-23 red pencils !
-15 blue pencils !
-12 green pencils !
-0 orange pencils !
+23 RED PENCILS !
+15 BLUE PENCILS !
+12 GREEN PENCILS !
+0 ORANGE PENCILS !
 
-cr
-red pencils ? cr
-blue pencils ? cr
-green pencils ? cr
-orange pencils ? cr
+CR
+RED PENCILS ? CR
+BLUE PENCILS ? CR
+GREEN PENCILS ? CR
+ORANGE PENCILS ? CR
 
-\ histogram display
+\ HISTOGRAM dIsplay
 
-variable histogram 9 cells allot
+VARIABLE HISTOGRAM 9 CELLS ALLOT
 
-: histogram-element
-   cells histogram + ;
+: HISTOGRAM-ELEMENT
+   CELLS HISTOGRAM + ;
 
-: star
-   [char] * emit ;
+: STAR
+   [CHAR] * EMIT ;
 
-: stars
-   0 do star loop ;
+: STARS
+   0 DO STAR LOOP ;
 
-: histogram-row
-   histogram-element @ stars ;
+: HISTOGRAM-ROW
+   HISTOGRAM-ELEMENT @ STARS ;
 
-: plot-row
-   dup 1+ . histogram-row cr ;
+: PLOT-ROW
+   DUP 1+ . HISTOGRAM-ROW CR ;
 
-: plot
-   10 0 do i plot-row loop ;
+: PLOT
+   10 0 DO I PLOT-ROW LOOP ;
 
-2 0 histogram-element !
-4 1 histogram-element !
-6 2 histogram-element !
-8 3 histogram-element !
-10 4 histogram-element !
-20 5 histogram-element !
-30 6 histogram-element !
-40 7 histogram-element !
-25 8 histogram-element !
-15 9 histogram-element !
+2 0 HISTOGRAM-ELEMENT !
+4 1 HISTOGRAM-ELEMENT !
+6 2 HISTOGRAM-ELEMENT !
+8 3 HISTOGRAM-ELEMENT !
+10 4 HISTOGRAM-ELEMENT !
+20 5 HISTOGRAM-ELEMENT !
+30 6 HISTOGRAM-ELEMENT !
+40 7 HISTOGRAM-ELEMENT !
+25 8 HISTOGRAM-ELEMENT !
+15 9 HISTOGRAM-ELEMENT !
 
-cr
-plot
+CR
+PLOT
 
-\ oxo board
+\ OXO board
 
-variable oxo-data 8 allot
+VARIABLE OXO-DATA 8 ALLOT
 
-: new-oxo-game ( -- )
-   oxo-data 9 erase ;
+: NEW-OXO-GAME ( -- )
+   OXO-DATA 9 ERASE ;
 
-: oxo-element ( index -- address )
-   oxo-data + ;
+: OXO-ELEMENT ( index -- address )
+   OXO-DATA + ;
 
-: x-piece ( -- )
-   [char] x emit ;
+: X-PIECE ( -- )
+   [CHAR] x EMIT ;
 
-: o-piece ( -- )
-   [char] o emit ;
+: O-PIECE ( -- )
+   [CHAR] o EMIT ;
 
-: bar ( -- )
-   [char] | emit ;
+: BAR ( -- )
+   [CHAR] | EMIT ;
 
-: hyphen ( -- )
-   [char] - emit ;
+: HYPHEN ( -- )
+   [CHAR] - EMIT ;
 
-: hyphens ( n -- )
-   0 do hyphen loop ;
+: HYPHENS ( n -- )
+   0 DO HYPHEN LOOP ;
 
-: oxo-element? ( n -- )
-   ( cannot test against -1 because we store as a byte 255 )
-   oxo-element c@ dup
-   0= if space drop else
-   1 = if x-piece else
-     o-piece
-   then then ;
+: OXO-ELEMENT? ( n -- )
+   ( cannot test agaInst -1 because we store as a byte 255 )
+   OXO-ELEMENT C@ DUP
+   0= IF SPACE DROP ELSE
+   1 = IF X-PIECE ELSE
+     O-PIECE
+   THEN THEN ;
 
-: hyphen-row ( -- )
-   11 hyphens ;
+: HYPHEN-ROW ( -- )
+   11 HYPHENS ;
 
-: oxo? ( -- )
-   9 0 do
-     space i oxo-element?
-     i 1+ 3 mod 0= if
-       cr
-       i 7 < if hyphen-row cr then
-     else
-       space bar
-     then
-   loop
-   cr ;
+: OXO? ( -- )
+   9 0 DO
+     SPACE I OXO-ELEMENT?
+     I 1+ 3 MOD 0= IF
+       CR
+       I 7 < IF HYPHEN-ROW CR THEN
+     ELSE
+       SPACE BAR
+     THEN
+   LOOP
+   CR ;
 
-: player! ( index value -- )
-   swap oxo-element c! oxo? cr ;
+: PLAYER! ( index value -- )
+   SWAP OXO-ELEMENT C! OXO? CR ;
 
-: x! ( n -- )
-   1- 1 player! ;
+: X! ( n -- )
+   1- 1 PLAYER! ;
 
-: o! ( n -- )
-   1- -1 player! ;
+: O! ( n -- )
+   1- -1 PLAYER! ;
 
-cr
+CR
 
-new-oxo-game
+NEW-OXO-GAME
 
-4 x!
-3 o!
+4 X!
+3 O!
 
-.s
+.S
