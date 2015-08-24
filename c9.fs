@@ -1,0 +1,15 @@
+\ Code from Chapter 2, problem 6
+\ Untouched!
+
+: CONVICTED-OF 0 ;
+: HOMICIDE 20 + ;
+: ARSON 10 + ;
+: BOOKMAKING 2 + ;
+: TAX-EVASION 5 + ;
+
+: WILL-SERVE
+   . ." YEARS" ;
+
+CR
+CONVICTED-OF ARSON HOMICIDE TAX-EVASION
+WILL-SERVE
